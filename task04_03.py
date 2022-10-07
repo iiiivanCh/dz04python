@@ -19,8 +19,10 @@ def get_user_number(str_1):
 
 def get_user_random_list(arr_len):
     arr_list = []
+
     for i in range(arr_len):
         arr_list.append(random.randint(0, 20))
+
     return arr_list
 
 

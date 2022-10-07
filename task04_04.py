@@ -11,49 +11,43 @@ def get_user_number(str_1):
     while True:
         try:
             num = int(input(str_1))
-            if num >= 0:
+            if num > 0:
                 return num
             else:
-                print('Введенное число меньше 0. Повторите ввод')
+                print('Введенное число меньше или равно 0. Повторите ввод')
         except ValueError:
             print("Вы ввели не целое число. Повторите ввод")
 
 
-def get_user_list(degree):
+def get_user_list(degree, start=0, end=100):
     arr_list = []
-    for i in range(degree):
-        arr_list.append(random.randint(0, 100))
+
+    for i in range(degree + 1):
+        arr_list.append(random.randint(start, end))
+
     print(arr_list)
     return arr_list
 
 
 def get_user_polynomial(degree, arr_list):
     pol = []
-    for i in range(degree - 1, -1, -1):
-        if not arr_list[i] == 0 and not i <= 2:
-            if arr_list[i] < 0:
-                if i == (degree - 1):
-                    pol.append(f'-{-1 * arr_list[i]}x**{i + 1} ')
-                else:
-                    pol.append(f'- {-1 * arr_list[i]}x**{i + 1} ')
-            else:
-                if i == (degree - 1):
-                    pol.append(f'{arr_list[i]}x**{i + 1} ')
-                else:
-                    pol.append(f'+ {arr_list[i]}x**{i + 1} ')
-        if i == 1:
-            if arr_list[i] < 0:
-                pol.append(f'- {-1 * arr_list[i]}x ')
-            else:
-                pol.append(f'+ {arr_list[i]}x ')
-        if i == 0:
-            if arr_list[i] == 0:
-                break
-            if arr_list[i] < 0:
-                pol.append(f'- {-1 * arr_list[i]}')
-            else:
-                pol.append(f'+ {arr_list[i]}')
-    str_pol = ''.join(pol)
+
+    for i in range(degree, -1, -1):
+        if not arr_list[i] == 0:
+            if i == 0 and len(pol) == 0:
+                pol = pol
+            elif arr_list[i] > 1 and i > 1:
+                pol.append(f'{arr_list[i]}*x**{i}')
+            elif arr_list[i] == 1 and i > 1:
+                pol.append(f'x**{i}')
+            elif arr_list[i] > 1 and i == 1:
+                pol.append(f'{arr_list[i]}*x')
+            elif arr_list[i] == 1 and i == 1:
+                pol.append('x')
+            elif i == 0:
+                pol.append(f'{arr_list[i]}')
+
+    str_pol = ' + '.join(pol)
     print(str_pol)
     return str_pol
 
