@@ -18,7 +18,7 @@ def get_user_number(str_1):
 
 
 def get_checking_natural_number(number):
-    for i in range(2, number // 2):
+    for i in range(2, int(math.sqrt(number)) + 1):
         if number % i == 0:
             return False
     return True
@@ -28,6 +28,7 @@ def get_list_prime_factors_number(number):
     list_prime_factors_number = []
     multiplier = 1
     while not multiplier == number:
+        print(multiplier, number)
         multiplier += 1
         if get_checking_natural_number(multiplier):
             if number % multiplier == 0:
@@ -40,4 +41,3 @@ def get_list_prime_factors_number(number):
 user_number = get_user_number('Введите натуральное число: ')
 user_list = get_list_prime_factors_number(user_number)
 print(f"{user_list} => {math.prod(user_list)} (Проверка)")
-# 456 878 787 878
