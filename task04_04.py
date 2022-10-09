@@ -11,10 +11,10 @@ def get_user_number(str_1):
     while True:
         try:
             num = int(input(str_1))
-            if num > 0:
+            if 10 > num > 0:
                 return num
             else:
-                print('Введенное число меньше или равно 0. Повторите ввод')
+                print('Введенное число меньше или равно 0 или больше 9. Повторите ввод')
         except ValueError:
             print("Вы ввели не целое число. Повторите ввод")
 
@@ -53,11 +53,11 @@ def get_user_polynomial(degree, arr_list):
 
 
 def get_file(u_file, user_str):
-    with open(u_file, 'a', encoding='utf-8') as f:
-        f.write(user_str + '\n')
+    with open(u_file, 'w', encoding='utf-8') as f:
+        f.write(user_str)
 
 
-user_degree = get_user_number('Введите натуральное число: ')
+user_degree = get_user_number('Введите натуральное число до 9 включительно: ')
 user_list = get_user_list(user_degree)
 user_polynomial = get_user_polynomial(user_degree, user_list)
 get_file('text1.txt', user_polynomial)

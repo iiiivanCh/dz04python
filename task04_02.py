@@ -28,7 +28,7 @@ def get_list_prime_factors_number(number):
     list_prime_factors_number = []
     multiplier = 1
     while not multiplier == number:
-        print(multiplier, number)
+        # print(multiplier, number)
         multiplier += 1
         if get_checking_natural_number(multiplier):
             if number % multiplier == 0:
